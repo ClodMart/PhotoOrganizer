@@ -26,11 +26,10 @@ Design Pattern: WPF with MVVM
                              First select the Create Subfolders checkbox to see the options.                             
                              The Naming Convention textbox will contain the way the program will name the subfolders,
                              if you use image metadata (indicated with $MetadataToken") to name them they will automatically organized in different folders.
-                             The Folder Naming Option selector allows you to insert metadata in the folder name with the Add button.     
-                        
-      ''                 
+                             The Folder Naming Option selector allows you to insert metadata in the folder name with the Add button.                           
+      '''                 
       Output Name Settings: 
-      This section will allow you to choose how images will be renamed.
+                            This section will allow you to choose how images will be renamed.
                             Naming convention field works the same as the folder one.
                             The Use Metadata checkbox is used to not use the image metadata to rename files.
                             (If you put in the naming convention a metadata value and then remove the checkbox the data will be ignored)                            
