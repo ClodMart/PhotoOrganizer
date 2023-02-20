@@ -1,5 +1,6 @@
 # PhotoOrganizer
-Photo organizer is a tool that allows you to organize photos based on some directives and their metadata.
+Photo organizer is a tool that allows you to organize photos based on some directives and their metadata.<br />
+File config.json keeps last setting used and load them on start.
 
 ## Code Details
 Framework: .NET 6.0<br />
