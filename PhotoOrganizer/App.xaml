@@ -1,0 +1,232 @@
+﻿<Application x:Class="PhotoOrganizer.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:PhotoOrganizer"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <Style x:Key="Icom" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="\Media\pngegg.png"/>
+        </Style>
+        <Style x:Key="CloseButtonIcon" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="\Media\Close_Button.png"/>
+        </Style>
+        <Style x:Key="CloseButtonMouseOver" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="\Media\Close_Button_MouseOver.png"/>
+        </Style>
+        <Style x:Key="CloseButtonPressed" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="\Media\Close_Button_Pressed.png"/>
+        </Style>
+        <Style x:Key="DisableButton" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="\Media\Disabled_button.png"/>
+        </Style>
+
+        <ControlTemplate x:Key="CloseButton" TargetType="{x:Type Button}">            
+            <Button x:Name="Button"  Width="23"
+                    Height="23" Margin="3,2,3,0" BorderThickness="0" BorderBrush="Transparent" Background="Transparent"
+                    OverridesDefaultStyle="True" Padding="-4"
+                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" IsCancel="True" Click="Close_Click">
+                <Image x:Name="Image" Style="{StaticResource CloseButtonIcon}"/>
+            </Button>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="Button" Property="BorderBrush" Value="Transparent" />
+                    <Setter Property="Style" TargetName="Image" Value="{StaticResource CloseButtonMouseOver}">
+                    </Setter>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter TargetName="Button" Property="BorderBrush" Value="Transparent" />
+                    <Setter Property="Style" TargetName="Image" Value="{StaticResource CloseButtonPressed}">
+                    </Setter>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter TargetName="Button" Property="BorderBrush" Value="Transparent" />
+                    <Setter Property="Style" TargetName="Image" Value="{StaticResource DisableButton}">
+                    </Setter>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <Style x:Key="ResizeIcon" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="\Media\Resize_Button.png"/>
+        </Style>
+        <Style x:Key="ResizeMouseOver" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="\Media\Resize_MouseOver.png"/>
+        </Style>
+        <Style x:Key="ResizePressed" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="\Media\Resize_Button_Pressed.png"/>
+        </Style>
+
+        <ControlTemplate x:Key="ResizeButton" TargetType="{x:Type Button}">
+            <Button x:Name="Button"  Width="23"
+                    Height="23" Margin="3,2,0,0" BorderThickness="0" BorderBrush="Transparent" Background="Transparent"
+                    OverridesDefaultStyle="True" Padding="-4"
+                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Resize_Click">
+                <Image x:Name="Image" Style="{StaticResource ResizeIcon}"/>
+            </Button>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="Button" Property="BorderBrush" Value="Transparent" />
+                    <Setter Property="Style" TargetName="Image" Value="{StaticResource ResizeMouseOver}">
+                    </Setter>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter TargetName="Button" Property="BorderBrush" Value="Transparent" />
+                    <Setter Property="Style" TargetName="Image" Value="{StaticResource ResizePressed}">
+                    </Setter>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter TargetName="Button" Property="BorderBrush" Value="Transparent" />
+                    <Setter Property="Style" TargetName="Image" Value="{StaticResource DisableButton}">
+                    </Setter>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <Style x:Key="ReduceIcon" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="\Media\Reduce_Button.png"/>
+        </Style>
+        <Style x:Key="ReduceMouseOver" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="\Media\Reduce_MouseOver.png"/>
+        </Style>
+        <Style x:Key="ReducePressed" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="\Media\Reduce_Button_Pressed.png"/>
+        </Style>
+
+        <ControlTemplate x:Key="ReduceButton" TargetType="{x:Type Button}">
+            <Button x:Name="Button"  Width="23"
+                    Height="23" Margin="3,2,0,0" BorderThickness="0" BorderBrush="Transparent" Background="Transparent"
+                    OverridesDefaultStyle="True" Padding="-4"
+                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Reduce_Click">
+                <Image x:Name="Image" Style="{StaticResource ReduceIcon}"/>
+            </Button>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="Button" Property="BorderBrush" Value="Transparent" />
+                    <Setter Property="Style" TargetName="Image" Value="{StaticResource ReduceMouseOver}">
+                    </Setter>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter TargetName="Button" Property="BorderBrush" Value="Transparent" />
+                    <Setter Property="Style" TargetName="Image" Value="{StaticResource ReducePressed}">
+                    </Setter>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter TargetName="Button" Property="BorderBrush" Value="Transparent" />
+                    <Setter Property="Style" TargetName="Image" Value="{StaticResource DisableButton}">
+                    </Setter>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <Style x:Key="RectBorderStyle" TargetType="Rectangle">
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="Fill" Value="Transparent" />
+            <Setter Property="Grid.ZIndex" Value="3"/>
+            <Setter Property="Tag" Value="{Binding RelativeSource={RelativeSource AncestorType=Window}}" />
+            <EventSetter Event="MouseLeftButtonDown" Handler="Resize_Init"/>
+            <EventSetter Event="MouseLeftButtonUp" Handler="Resize_End"/>
+            <EventSetter Event="MouseMove" Handler="Resizeing_Form"/>
+        </Style>
+
+        <Style x:Key="CustomWindowStyle" TargetType="{x:Type Window}">            
+            <Setter Property="WindowStyle" Value="None"/>
+            <Setter Property="AllowsTransparency" Value="True"/>
+            <Setter Property="ResizeMode" Value="NoResize"/>
+            <Setter Property="Background" Value="MintCream"/>
+            <Setter Property="BorderBrush" Value="#0046E7"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Window}">
+                        <Border BorderThickness="3" CornerRadius="10" BorderBrush="Black">
+                        <Grid Background="{TemplateBinding Background}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            
+                                <Rectangle Grid.RowSpan="2"  x:Name="leftSizeGrip"
+                                        Width="7"
+                                        HorizontalAlignment="Left"
+                                        Cursor="SizeWE"
+                                        Style="{StaticResource RectBorderStyle}" />
+                                <Rectangle Grid.RowSpan="2" x:Name="rightSizeGrip"
+                                        Width="7"
+                                        HorizontalAlignment="Right"
+                                        Cursor="SizeWE"
+                                        Style="{StaticResource RectBorderStyle}" />
+                                <Rectangle Grid.RowSpan="2" x:Name="topSizeGrip"
+                                        Height="7"
+                                        VerticalAlignment="Top"
+                                        Cursor="SizeNS"
+                                        Style="{StaticResource RectBorderStyle}" />
+                                <Rectangle Grid.RowSpan="2" x:Name="bottomSizeGrip"
+                                        Height="7"
+                                        VerticalAlignment="Bottom"
+                                        Cursor="SizeNS"
+                                        Style="{StaticResource RectBorderStyle}" />
+                                                                    <!--  Corners  -->
+                                <Rectangle Grid.RowSpan="2" Name="topLeftSizeGrip"
+                                        Width="7"
+                                        Height="7"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        Cursor="SizeNWSE"
+                                        Style="{StaticResource RectBorderStyle}" />
+                                <Rectangle Grid.RowSpan="2" Name="bottomRightSizeGrip"
+                                        Width="7"
+                                        Height="7"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Bottom"
+                                        Cursor="SizeNWSE"
+                                        Style="{StaticResource RectBorderStyle}" />
+                                <Rectangle Grid.RowSpan="2" Name="topRightSizeGrip"
+                                        Width="7"
+                                        Height="7"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Top"
+                                        Cursor="SizeNESW"
+                                        Style="{StaticResource RectBorderStyle}" />
+                                <Rectangle Grid.RowSpan="2" Name="bottomLeftSizeGrip"
+                                        Width="7"
+                                        Height="7"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        Cursor="SizeNESW"
+                                        Style="{StaticResource RectBorderStyle}" />
+
+
+                                <StackPanel Grid.ColumnSpan="2" Background="Black" Orientation="Horizontal">
+                                    <DockPanel>
+                                    <Image Style="{StaticResource Icom}" VerticalAlignment="Top"/>
+                                    </DockPanel>
+                                    <TextBlock TextAlignment="Left"
+                       Margin="10 5 0 0"
+                       FontSize="15"
+                       FontWeight="DemiBold"
+                       Foreground="RoyalBlue"
+                       Text="{TemplateBinding Title}" MouseDown="StackPanel_MouseDown"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="0" Grid.Column="1"
+                      Orientation="Horizontal"
+                      HorizontalAlignment="right"
+                      VerticalAlignment="Center"
+                      Margin="0 0 3 0" Height="30">
+                                <Button x:Name="Reduce"  Template="{StaticResource ReduceButton}"/>
+                                <Button x:Name="Resize" Template="{StaticResource ResizeButton}"/>
+                                <Button x:Name="Close" Template="{StaticResource CloseButton}">
+                                </Button>
+                            </StackPanel>
+                            <!-- here goes the content -->
+                            <ContentPresenter Grid.Row="1"/>
+                        </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Application.Resources>
+</Application>

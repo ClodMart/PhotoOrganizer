@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>pngegg.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="images.jfif" />
+    <None Remove="Media\Close_Button.png" />
+    <None Remove="Media\Close_Button_MouseOver.png" />
+    <None Remove="Media\Close_Button_Pressed.png" />
+    <None Remove="Media\Disabled_button.png" />
+    <None Remove="Media\pngegg.png" />
+    <None Remove="Media\Reduce_Button.png" />
+    <None Remove="Media\Reduce_Button_Pressed.png" />
+    <None Remove="Media\Reduce_MouseOver.png" />
+    <None Remove="Media\Resize_Button.png" />
+    <None Remove="Media\Resize_Button_Pressed.png" />
+    <None Remove="Media\Resize_MouseOver.png" />
+    <None Remove="modern-dark-texture-background_1035-11632.webp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="pngegg.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="Ookii.Dialogs.Wpf" Version="5.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images.jfif" />
+    <Resource Include="Media\Close_Button_MouseOver.png" />
+    <Resource Include="Media\Close_Button_Pressed.png" />
+    <Resource Include="Media\Close_Button.png" />
+    <Resource Include="Media\Disabled_button.png" />
+    <Resource Include="Media\pngegg.png" />
+    <Resource Include="Media\Reduce_Button.png" />
+    <Resource Include="Media\Reduce_Button_Pressed.png" />
+    <Resource Include="Media\Reduce_MouseOver.png" />
+    <Resource Include="Media\Resize_Button.png" />
+    <Resource Include="Media\Resize_Button_Pressed.png" />
+    <Resource Include="Media\Resize_MouseOver.png" />
+    <Resource Include="modern-dark-texture-background_1035-11632.webp" />
+  </ItemGroup>
+
+</Project>
