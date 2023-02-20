@@ -1,7 +1,7 @@
 # PhotoOrganizer
 Photo organizer is a tool that allows you to organize photos based on some directives and their metadata.
 
-##Code Details
+## Code Details
 Framework: .NET 6.0
 Design Pattern: WPF with MVVM
 
