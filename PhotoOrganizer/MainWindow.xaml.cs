@@ -78,12 +78,14 @@ namespace PhotoOrganizer
             ((AppViewModel)DataContext).Log += "Start Processing.....";
             string Name = ""; string Taken_Date = ""; string Taken_Time = ""; string Location = ""; string Creator = ""; string Title = ""; string Folder_Name = ""; string Username = ""; string Today_Date = ""; string Now_Time = "";
             List<String> Files = ((AppViewModel)DataContext).GetImages();
+            string OriginalExtension = "";
 
             foreach(String x in Files)
             {
                 FileInfo f = new FileInfo(x);
                 if(f.Extension == ".jpg" || f.Extension == ".jpeg" || f.Extension == ".png" || f.Extension == ".bmp")
                 {
+                    OriginalExtension= f.Extension;
                     using (FileStream fs = new FileStream(f.FullName, FileMode.Open, FileAccess.Read, FileShare.Read))
                     {
                         BitmapSource img = BitmapFrame.Create(fs);
@@ -203,12 +205,24 @@ namespace PhotoOrganizer
                     }
                     //Name = (string)pngInplace.GetQuery("/Text/Name");
                 }
-                string NewName = ((AppViewModel)DataContext).Settings.NamingConventionParse(Name, Taken_Date, Taken_Time, Location, Creator, Title, Folder_Name, Username, Today_Date, Now_Time);
+                int i = 0;
+                string NewName = ((AppViewModel)DataContext).Settings.NamingConventionParse(Name, Taken_Date, Taken_Time, Location, Creator, Title, Folder_Name, Username, Today_Date, Now_Time, i, OriginalExtension);
                 string NewPath = ((AppViewModel)DataContext).Settings.OutputPath + "\\" +((AppViewModel)DataContext).Settings.FolderConventionParse(Name, Taken_Date, Taken_Time, Location, Creator, Title, Folder_Name);
                 string NewFile = NewPath + "\\" + NewName;
                 Directory.CreateDirectory(NewPath);
+                while (File.Exists(NewFile))
+                {
+                    i++;
+                    NewName = ((AppViewModel)DataContext).Settings.NamingConventionParse(Name, Taken_Date, Taken_Time, Location, Creator, Title, Folder_Name, Username, Today_Date, Now_Time,i, OriginalExtension);
+                    NewFile = NewPath + "\\" + NewName;
+                }
                 f.CopyTo(NewFile);
                 ((AppViewModel)DataContext).Log += "File moved to " + NewFile +"\n\n";
+                if (((AppViewModel)DataContext).Settings.DelFiles)
+                {
+                    File.Delete(f.FullName);
+                    ((AppViewModel)DataContext).Log += "File " + f.FullName+ " deleted" + "\n\n";
+                }
             }
 
         }

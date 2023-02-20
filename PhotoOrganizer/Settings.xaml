@@ -235,10 +235,13 @@
             <TabItem Header="Input" Style="{StaticResource TabItemStyle}">
                 <StackPanel Background="#FFE5E5E5">
                     <Border BorderThickness="2" BorderBrush="Black" Margin="5">
-                        <StackPanel Orientation="Horizontal" Margin="0,10,0,10" VerticalAlignment="Top" HorizontalAlignment="Left">
-                            <Label Content="Image Format" Margin="30,0,0,0" VerticalAlignment="Center"/>
-                            <ComboBox Margin="0,0,0,0" Height="25" ItemsSource="{Binding Source={StaticResource ImageFormatIN}}" SelectedItem="{Binding Path=ImageFormatIN, Mode=TwoWay}"/>
-                            <CheckBox x:Name="RecursiveCheck" Content="Recursive" Margin="10,0,0,0" IsChecked="{Binding Path=Recursive, Mode=TwoWay}" VerticalAlignment="Center"/>
+                        <StackPanel Orientation="Vertical" Margin="0,10,0,10" VerticalAlignment="Top" HorizontalAlignment="Left">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                <Label Content="Image Format" Margin="30,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                <ComboBox Margin="0,0,0,0" Height="25" ItemsSource="{Binding Source={StaticResource ImageFormatIN}}" SelectedItem="{Binding Path=ImageFormatIN, Mode=TwoWay}"/>
+                            </StackPanel>                           
+                            <CheckBox x:Name="RecursiveCheck" Content="Recursive" Margin="35,10,0,0" IsChecked="{Binding Path=Recursive, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            <CheckBox x:Name="DeleteCheck" Content="Delete Original File" Margin="35,10,0,0" IsChecked="{Binding Path=DelFiles, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                         </StackPanel>
                     </Border>
                 </StackPanel>
@@ -306,24 +309,24 @@
                                              Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" CornerRadius="5" Margin="5,-5,-5,5"/>
                                         <Border BorderThickness="1" BorderBrush="Black" 
                                              Grid.Column="4" Grid.Row="0" Grid.RowSpan="2" CornerRadius="5" Margin="15,-5,-5,5"/>
-                                        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
-                                            <Label Content="Image Metadata" Margin="10,0,0,0" VerticalContentAlignment="Center"/>
+                                        <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal">
+                                            <Label Content="Image Metadata" Margin="25,0,0,0" VerticalContentAlignment="Center"/>
                                             <ComboBox x:Name="ImageMetadata" Margin="0,0,10,0" ItemsSource="{Binding Source={StaticResource ImageMetadata}}" SelectedIndex="0" Height="25" VerticalContentAlignment="Center"/>
                                         </StackPanel>
-                                        <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal">
-                                            <Label Content="Other Info" Margin="10,0,0,0" VerticalContentAlignment="Center"/>
+                                        <StackPanel Grid.Row="0" Grid.Column="4" Orientation="Horizontal" >
+                                            <Label Content="Other Info" Margin="15,0,0,0" VerticalContentAlignment="Center"/>
                                             <ComboBox x:Name="OtherMetadata" Margin="0,0,0,0" ItemsSource="{Binding Source={StaticResource OtherSettings}}" SelectedIndex="0" Height="25" VerticalContentAlignment="Center"/>
                                         </StackPanel>
-                                        <StackPanel Grid.Row="0" Grid.Column="4" Orientation="Horizontal">
-                                            <Label Content="Image Format" Margin="20,0,0,0" VerticalContentAlignment="Center"/>
+                                        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Margin="0,0,10,15">
+                                            <Label Content="Image Format" Margin="10,0,0,0" VerticalContentAlignment="Center"/>
                                             <ComboBox Margin="0,0,0,0" ItemsSource="{Binding Source={StaticResource ImageFormat}}" SelectedItem="{Binding Path=ImageFormat, Mode=TwoWay}" VerticalContentAlignment="Center" Height="25"/>
                                         </StackPanel>
-                                        <CheckBox x:Name="UseMetadata" Content="Use Metadata" Margin="30,10,0,15" IsChecked="{Binding Path=UseMetadata, Mode=TwoWay}"  Grid.Row="1" Grid.Column="4"/>
-                                        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
-                                            <Button x:Name="SelectMetadata" Content="Add Metadata" Width="100" Margin="30,10,46.5,10" Click="SelectMetadata_Click" IsEnabled="{Binding Path=UseMetadata}"/>
-                                        </StackPanel>
+                                        <CheckBox x:Name="UseMetadata" Content="Use Metadata" Margin="30,10,0,15" IsChecked="{Binding Path=UseMetadata, Mode=TwoWay}"  Grid.Row="0" Grid.Column="0"/>
                                         <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal">
-                                            <Button x:Name="SelectInfo" Content="Add Info" Width="100" Margin="40,10,0,10" Click="SelectInfo_Click"/>
+                                            <Button x:Name="SelectMetadata" Content="Add Metadata" Width="100" Margin="50,10,46.5,10" Click="SelectMetadata_Click" IsEnabled="{Binding Path=UseMetadata}"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="1" Grid.Column="4" Orientation="Horizontal">
+                                            <Button x:Name="SelectInfo" Content="Add Info" Width="100" Margin="50,10,0,10" Click="SelectInfo_Click"/>
                                         </StackPanel>
                                     </Grid>
                                 </StackPanel>

@@ -19,7 +19,8 @@ namespace PhotoOrganizer.Classes
     {
         JPEG,
         BMP,
-        PNG
+        PNG,
+        Keep_Source
     }
 
     public enum ImageFormatIN

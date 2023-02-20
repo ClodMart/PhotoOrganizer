@@ -70,6 +70,13 @@ namespace PhotoOrganizer.ViewModels
             set { recursive = value; NotifyPropertyChanged(); }
         }
 
+        private bool delFiles = true;
+        public bool DelFiles
+        {
+            get { return delFiles; }
+            set { delFiles = value; NotifyPropertyChanged(); }
+        }
+
         private SubfolderSettings subfolderName = SubfolderSettings.Photo_Name;
 
         public SubfolderSettings SubfolderName
@@ -104,7 +111,7 @@ namespace PhotoOrganizer.ViewModels
         
 
 
-        public SettingsViewModel(string sourcePath, string outputPath, bool createSubfolder, SubfolderSettings subfolderName, ImageFormat imageFormat, ImageFormatIN imageFormatIN, string namingConvention, bool recursive, bool useMetadata, string folderConvention)
+        public SettingsViewModel(string sourcePath, string outputPath, bool createSubfolder, SubfolderSettings subfolderName, ImageFormat imageFormat, ImageFormatIN imageFormatIN, string namingConvention, bool recursive, bool useMetadata, string folderConvention, bool delFiles)
         {
             SourcePath = sourcePath;
             OutputPath = outputPath;
@@ -116,13 +123,15 @@ namespace PhotoOrganizer.ViewModels
             Recursive = recursive;
             UseMetadata = useMetadata;
             FolderConvention = folderConvention;
+            DelFiles = delFiles;
         }
 
         public SettingsViewModel()
         {
-            Backup = new SettingsViewModel(SourcePath, OutputPath, CreateSubfolder, SubfolderName, ImageFormat, ImageFormatIN, NamingConvention, Recursive, UseMetadata, FolderConvention);
+            Backup = new SettingsViewModel(SourcePath, OutputPath, CreateSubfolder, SubfolderName, ImageFormat, ImageFormatIN, NamingConvention, Recursive, UseMetadata, FolderConvention, DelFiles);
             LoadSettings();
             BackupSettings();
+            RestoreViewModel();
         }
 
         #region SettingsSave/Load
@@ -138,6 +147,7 @@ namespace PhotoOrganizer.ViewModels
             Backup.Recursive = Recursive;
             Backup.UseMetadata = UseMetadata;
             Backup.FolderConvention = FolderConvention;
+            Backup.DelFiles = DelFiles;
         }
 
         public void RestoreViewModel ()
@@ -153,6 +163,7 @@ namespace PhotoOrganizer.ViewModels
             Recursive = Backup.Recursive;
             UseMetadata = Backup.UseMetadata;
             FolderConvention = Backup.FolderConvention;
+            DelFiles = Backup.DelFiles;
         }
 
         public void SaveSettings()
@@ -184,6 +195,8 @@ namespace PhotoOrganizer.ViewModels
                 writer.WriteValue(UseMetadata);
                 writer.WritePropertyName("FolderConvention");
                 writer.WriteValue(FolderConvention);
+                writer.WritePropertyName("DelFiles");
+                writer.WriteValue(DelFiles);
                 writer.WriteEndObject();
             }
             File.WriteAllTextAsync(configfile, sw.ToString());
@@ -239,6 +252,9 @@ namespace PhotoOrganizer.ViewModels
                             case "FolderConvention":
                                 FolderConvention = reader.Value.ToString();
                                 break;
+                            case "DelFiles":
+                                DelFiles= (bool)reader.Value;
+                                break ;
                             default: 
                                 break;
 
@@ -250,7 +266,6 @@ namespace PhotoOrganizer.ViewModels
 
                 }
             }
-
         }
         #endregion
 
@@ -263,8 +278,10 @@ namespace PhotoOrganizer.ViewModels
         {
             FolderConvention += s;
         }
-        public string NamingConventionParse(string Name, string Taken_Date, string Taken_Time, string Location, string Creator, string Title, string Folder_Name, string Username, string Today_Date, string Now_Time)
+        public string NamingConventionParse(string Name, string Taken_Date, string Taken_Time, string Location, string Creator, string Title, string Folder_Name, string Username, string Today_Date, string Now_Time, int FileNum, string OriginalEx)
         {
+            string Format = "";
+            string FileNumber = "";
             string NewName = NamingConvention;
             NewName = NewName.Replace("$Name$", Name);
             NewName = NewName.Replace("$Taken_Date$", Taken_Date);
@@ -276,7 +293,20 @@ namespace PhotoOrganizer.ViewModels
             NewName = NewName.Replace("$Username$", Username);
             NewName = NewName.Replace("$Today_Date$", Today_Date);
             NewName = NewName.Replace("$Now_Time$", Now_Time);
-            return NewName + "." + imageFormat.ToString().ToLower();
+            if(FileNum > 0)
+            {
+                FileNumber = "("+FileNum+")";
+            }
+            if(imageFormat == ImageFormat.Keep_Source)
+            {
+                Format = OriginalEx;
+            }
+            else
+            {
+                Format= imageFormat.ToString().ToLower();
+            }
+
+            return NewName + FileNumber +"." + Format;
         }
 
         public string FolderConventionParse(string Name, string Taken_Date, string Taken_Time, string Location, string Creator, string Title, string Folder_Name)
