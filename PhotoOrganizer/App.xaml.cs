@@ -117,7 +117,15 @@ namespace PhotoOrganizer
             //int WindowNumber = windows.Count - 1;
             //Window Win = windows[WindowNumber];
             Window Win = Window.GetWindow((Button)sender);
-            Win.WindowState = Normal ? WindowState.Normal : WindowState.Maximized;
+            if(Win.WindowState == WindowState.Normal)
+            {
+                Win.WindowState = WindowState.Maximized;
+            }
+            else if(Win.WindowState == WindowState.Maximized)
+            {
+                Win.WindowState = WindowState.Normal;
+            }
+            //Win.WindowState = Normal ? WindowState.Maximized : WindowState.Normal;
         }
 
         private void StackPanel_MouseDown(object sender, MouseButtonEventArgs e)
