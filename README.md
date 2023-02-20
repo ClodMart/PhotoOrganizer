@@ -19,7 +19,7 @@ Design Pattern: WPF with MVVM
     InputTab: In the input tab you can select what Image Format you want to be considered (Options are: JPEG, BMP, PNG or all of them) 
     and if the program will consider also subfolders (checkbox "Recursive")
     OutputTab: Here you will find two sections:
-      Organization Settings: This will give you the option to place photoes in subfolders; 
+      Organization Settings: This will give you the option to place photos in subfolders; 
                              First select the Create Subfolders checkbox to see the options
                              
                              The Naming Convention textbox will contain the way the program will name the subfolders,
