@@ -5,20 +5,21 @@ Photo organizer is a tool that allows you to organize photos based on some direc
 Framework: .NET 6.0
 Design Pattern: WPF with MVVM
 
-##How to use
-###Main window:
+## How to use
+
+###### Main window:
     In the main window you can select the source directory and the Target Directory;
     both of them are mandatory and I reccomend you to select different folders since the software will copy the images and not move them.
     
     Source Directory: This is the directory containing the photoes that you need to organize.
     Target Directory: This is the directory under wich you will find the photo after processing.
     
-###Settings:
+###### Settings:
     Here you can select what images you want to consider and how you want to organize them.
-    '''
+
     - InputTab: In the input tab you can select what Image Format you want to be considered (Options are: JPEG, BMP, PNG or all of them) 
     and if the program will consider also subfolders (checkbox "Recursive")
-    '''
+
     - OutputTab: Here you will find two sections:
       Organization Settings:
              This will give you the option to place photos in subfolders; 
